@@ -60,3 +60,15 @@ button:nth-child(4n):hover {
   background-color: #ffbb00;
 }
 
+.steps {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  line-height: 1.6;
+  max-height: 200px;
+  overflow-y: auto; /* Scroll if too many steps */
+}
+
