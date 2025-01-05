@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced Calculator</title>
+  <title>Apple-Like Calculator</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="calculator">
     <input type="text" id="result" placeholder="0" disabled>
     <div id="buttons">
-      <button onclick="clearScreen()">C</button>
-      <button onclick="deleteLast()">DEL</button>
-      <button onclick="appendValue('(')">(</button>
-      <button onclick="appendValue(')')">)</button>
+      <button onclick="clearScreen()">AC</button>
+      <button onclick="deleteLast()">⌫</button>
+      <button onclick="appendValue('%')">%</button>
       <button onclick="appendValue('/')">÷</button>
       <button onclick="appendValue('7')">7</button>
       <button onclick="appendValue('8')">8</button>
@@ -30,12 +29,12 @@
       <button onclick="appendValue('0')">0</button>
       <button onclick="appendValue('.')">.</button>
       <button onclick="calculateSquareRoot()">√</button>
-      <button onclick="calculateSin()">sin</button>
-      <button onclick="calculateCos()">cos</button>
-      <button onclick="calculateTan()">tan</button>
       <button onclick="calculateResult()">=</button>
     </div>
-    <div id="steps"></div> <!-- Step-by-step explanations -->
+  </div>
+  <div class="steps-container">
+    <h2>Step-by-Step Solution:</h2>
+    <div id="steps"></div>
   </div>
   <script src="script.js"></script>
 </body>
