@@ -15,7 +15,8 @@ function deleteLast() {
 function calculateResult() {
   const result = document.getElementById("result");
   try {
-    result.value = eval(result.value); // Basic arithmetic evaluation
+    // Safely evaluate the expression
+    result.value = eval(result.value || "0");
   } catch (error) {
     result.value = "Error";
   }
@@ -24,7 +25,12 @@ function calculateResult() {
 function calculateSquareRoot() {
   const result = document.getElementById("result");
   try {
-    result.value = Math.sqrt(eval(result.value));
+    const value = eval(result.value || "0");
+    if (value < 0) {
+      result.value = "Error";
+    } else {
+      result.value = Math.sqrt(value).toFixed(6);
+    }
   } catch (error) {
     result.value = "Error";
   }
@@ -33,7 +39,8 @@ function calculateSquareRoot() {
 function calculatePower() {
   const result = document.getElementById("result");
   try {
-    result.value = Math.pow(eval(result.value), 2);
+    const value = eval(result.value || "0");
+    result.value = Math.pow(value, 2).toFixed(6);
   } catch (error) {
     result.value = "Error";
   }
@@ -42,7 +49,8 @@ function calculatePower() {
 function calculateSin() {
   const result = document.getElementById("result");
   try {
-    result.value = Math.sin(toRadians(eval(result.value))).toFixed(6);
+    const value = eval(result.value || "0");
+    result.value = Math.sin(toRadians(value)).toFixed(6);
   } catch (error) {
     result.value = "Error";
   }
@@ -51,7 +59,8 @@ function calculateSin() {
 function calculateCos() {
   const result = document.getElementById("result");
   try {
-    result.value = Math.cos(toRadians(eval(result.value))).toFixed(6);
+    const value = eval(result.value || "0");
+    result.value = Math.cos(toRadians(value)).toFixed(6);
   } catch (error) {
     result.value = "Error";
   }
@@ -60,7 +69,8 @@ function calculateCos() {
 function calculateTan() {
   const result = document.getElementById("result");
   try {
-    result.value = Math.tan(toRadians(eval(result.value))).toFixed(6);
+    const value = eval(result.value || "0");
+    result.value = Math.tan(toRadians(value)).toFixed(6);
   } catch (error) {
     result.value = "Error";
   }
