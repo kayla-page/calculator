@@ -7,7 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   height: 100vh;
   text-align: center;
 }
@@ -18,7 +18,7 @@ h1 {
   font-weight: 700;
   color: white;
   text-shadow: 2px 2px 0px black;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 /* Calculator container */
@@ -26,7 +26,6 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 20px;
 }
 
@@ -36,7 +35,7 @@ h1 {
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  width: 300px;
+  width: 350px;
 }
 
 input#result {
@@ -53,7 +52,7 @@ input#result {
 
 #buttons {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* Rectangle button formation */
   gap: 10px;
 }
 
@@ -93,12 +92,13 @@ button:nth-child(4n):active {
 
 /* Steps container */
 .steps-container {
-  width: 300px;
+  width: 350px;
   background: white;
   border-radius: 10px;
   padding: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: left;
+  margin-top: 10px;
 }
 
 .steps-container h2 {
