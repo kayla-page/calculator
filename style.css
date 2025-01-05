@@ -1,61 +1,95 @@
 body {
   font-family: Arial, sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 100vh;
-  background-color: #d8f8d8;
   margin: 0;
+  background-color: #d8f8d8;
 }
 
 .calculator {
-  background: white;
-  border-radius: 10px;
+  background: #f2f2f2;
+  border-radius: 30px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 320px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  width: 350px;
 }
 
 input#result {
   width: 100%;
-  height: 50px;
-  background: #f2f2f2;
+  height: 70px;
+  background: #000;
+  color: #fff;
   border: none;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  font-size: 1.5em;
+  border-radius: 15px;
+  font-size: 2em;
   text-align: right;
-  padding: 0 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 #buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 15px;
 }
 
 button {
-  background: #a4d4a4;
+  background: #e0e0e0;
   border: none;
-  border-radius: 5px;
-  padding: 15px;
-  font-size: 1em;
+  border-radius: 50%;
+  padding: 20px;
+  font-size: 1.5em;
+  color: #333;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-  background: #8bbf8b;
+  background: #ccc;
+}
+
+button:active {
+  background: #bbb;
+  box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+button:nth-child(4n) {
+  background: #ffa726;
+  color: #fff;
+}
+
+button:nth-child(4n):hover {
+  background: #fb8c00;
+}
+
+button:nth-child(4n):active {
+  background: #f57c00;
+}
+
+.steps-container {
+  margin-top: 30px;
+  width: 350px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.steps-container h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 #steps {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 14px;
+  font-size: 1em;
   line-height: 1.6;
   max-height: 200px;
   overflow-y: auto;
+  word-wrap: break-word;
 }
