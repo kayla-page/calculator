@@ -76,3 +76,4 @@ function calculateSquareRoot() {
     result.value = "Error";
   }
 }
+
