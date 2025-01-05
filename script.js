@@ -25,7 +25,7 @@ function calculateResult() {
 function calculateSquareRoot() {
   const result = document.getElementById("result");
   try {
-    const value = eval(result.value || "0");
+    const value = parseFloat(result.value || "0");
     if (value < 0) {
       result.value = "Error";
     } else {
@@ -39,7 +39,7 @@ function calculateSquareRoot() {
 function calculatePower() {
   const result = document.getElementById("result");
   try {
-    const value = eval(result.value || "0");
+    const value = parseFloat(result.value || "0");
     result.value = Math.pow(value, 2).toFixed(6);
   } catch (error) {
     result.value = "Error";
@@ -49,7 +49,7 @@ function calculatePower() {
 function calculateSin() {
   const result = document.getElementById("result");
   try {
-    const value = eval(result.value || "0");
+    const value = parseFloat(result.value || "0");
     result.value = Math.sin(toRadians(value)).toFixed(6);
   } catch (error) {
     result.value = "Error";
@@ -59,7 +59,7 @@ function calculateSin() {
 function calculateCos() {
   const result = document.getElementById("result");
   try {
-    const value = eval(result.value || "0");
+    const value = parseFloat(result.value || "0");
     result.value = Math.cos(toRadians(value)).toFixed(6);
   } catch (error) {
     result.value = "Error";
@@ -69,7 +69,7 @@ function calculateCos() {
 function calculateTan() {
   const result = document.getElementById("result");
   try {
-    const value = eval(result.value || "0");
+    const value = parseFloat(result.value || "0");
     result.value = Math.tan(toRadians(value)).toFixed(6);
   } catch (error) {
     result.value = "Error";
@@ -79,3 +79,4 @@ function calculateTan() {
 function toRadians(degrees) {
   return degrees * (Math.PI / 180);
 }
+
