@@ -1,78 +1,78 @@
+let expression = ""; // Stores the current expression
+
 function appendValue(value) {
   const result = document.getElementById("result");
-  result.value += value;
+  expression += value;
+  result.value = expression;
 }
 
 function clearScreen() {
+  expression = "";
   document.getElementById("result").value = "";
-  document.getElementById("steps").innerHTML = ""; // Clear the step-by-step section
+  document.getElementById("steps").innerHTML = ""; // Clear steps
 }
 
 function deleteLast() {
-  const result = document.getElementById("result");
-  result.value = result.value.slice(0, -1);
+  expression = expression.slice(0, -1);
+  document.getElementById("result").value = expression;
 }
 
 function calculateResult() {
-  const result = document.getElementById("result");
   const steps = document.getElementById("steps");
   try {
-    const expression = result.value;
-    const evaluatedSteps = getStepByStep(expression);
-    steps.innerHTML = evaluatedSteps; // Display the steps
-    result.value = eval(expression); // Calculate the final result
-  } catch (error) {
-    result.value = "Error";
+    const finalResult = evalExpression(expression); // Evaluate expression step-by-step
+    steps.innerHTML = generateSteps(expression); // Display step-by-step breakdown
+    document.getElementById("result").value = finalResult;
+    expression = finalResult.toString(); // Update expression to the result
+  } catch (e) {
+    document.getElementById("result").value = "Error";
     steps.innerHTML = "Invalid expression!";
   }
 }
 
-function getStepByStep(expression) {
+function evalExpression(expr) {
+  return Function(`return (${expr});`)(); // Safely evaluate the expression
+}
+
+function generateSteps(expr) {
+  let currentExpr = expr;
   const steps = [];
-  let currentExpression = expression;
 
   // Handle parentheses
-  while (currentExpression.includes("(")) {
-    const innerMost = currentExpression.match(/\([^()]*\)/);
+  while (currentExpr.includes("(")) {
+    const innerMost = currentExpr.match(/\([^()]*\)/);
     if (innerMost) {
-      const evalInner = eval(innerMost[0]);
+      const evalInner = evalExpression(innerMost[0]);
       steps.push(`Evaluate ${innerMost[0]} = ${evalInner}`);
-      currentExpression = currentExpression.replace(innerMost[0], evalInner);
+      currentExpr = currentExpr.replace(innerMost[0], evalInner);
     }
   }
 
-  // Handle multiplication/division
-  const multiplicationDivision = /(-?\d+(\.\d+)?)([*/])(-?\d+(\.\d+)?)/;
-  while (multiplicationDivision.test(currentExpression)) {
-    const match = currentExpression.match(multiplicationDivision);
-    const evalPart = eval(match[0]);
+  // Break down remaining operations
+  const operators = /([-+]?[0-9.]+)([*/+-])([-+]?[0-9.]+)/;
+  while (operators.test(currentExpr)) {
+    const match = currentExpr.match(operators);
+    const evalPart = evalExpression(match[0]);
     steps.push(`Evaluate ${match[0]} = ${evalPart}`);
-    currentExpression = currentExpression.replace(match[0], evalPart);
+    currentExpr = currentExpr.replace(match[0], evalPart);
   }
 
-  // Handle addition/subtraction
-  const additionSubtraction = /(-?\d+(\.\d+)?)([+-])(-?\d+(\.\d+)?)/;
-  while (additionSubtraction.test(currentExpression)) {
-    const match = currentExpression.match(additionSubtraction);
-    const evalPart = eval(match[0]);
-    steps.push(`Evaluate ${match[0]} = ${evalPart}`);
-    currentExpression = currentExpression.replace(match[0], evalPart);
-  }
-
-  steps.push(`Final result: ${currentExpression}`);
+  steps.push(`Final result: ${currentExpr}`);
   return steps.join("<br>");
 }
 
 function calculateSquareRoot() {
   const result = document.getElementById("result");
   try {
-    const value = parseFloat(result.value || "0");
+    const value = parseFloat(expression || "0");
     if (value < 0) {
       result.value = "Error";
     } else {
-      result.value = Math.sqrt(value).toFixed(6);
+      const sqrtValue = Math.sqrt(value).toFixed(6);
+      expression = sqrtValue;
+      result.value = sqrtValue;
     }
-  } catch (error) {
+  } catch {
     result.value = "Error";
   }
 }
@@ -80,9 +80,11 @@ function calculateSquareRoot() {
 function calculateSin() {
   const result = document.getElementById("result");
   try {
-    const value = parseFloat(result.value || "0");
-    result.value = Math.sin(toRadians(value)).toFixed(6);
-  } catch (error) {
+    const value = parseFloat(expression || "0");
+    const sinValue = Math.sin(toRadians(value)).toFixed(6);
+    expression = sinValue;
+    result.value = sinValue;
+  } catch {
     result.value = "Error";
   }
 }
@@ -90,9 +92,11 @@ function calculateSin() {
 function calculateCos() {
   const result = document.getElementById("result");
   try {
-    const value = parseFloat(result.value || "0");
-    result.value = Math.cos(toRadians(value)).toFixed(6);
-  } catch (error) {
+    const value = parseFloat(expression || "0");
+    const cosValue = Math.cos(toRadians(value)).toFixed(6);
+    expression = cosValue;
+    result.value = cosValue;
+  } catch {
     result.value = "Error";
   }
 }
@@ -100,9 +104,11 @@ function calculateCos() {
 function calculateTan() {
   const result = document.getElementById("result");
   try {
-    const value = parseFloat(result.value || "0");
-    result.value = Math.tan(toRadians(value)).toFixed(6);
-  } catch (error) {
+    const value = parseFloat(expression || "0");
+    const tanValue = Math.tan(toRadians(value)).toFixed(6);
+    expression = tanValue;
+    result.value = tanValue;
+  } catch {
     result.value = "Error";
   }
 }
@@ -110,4 +116,3 @@ function calculateTan() {
 function toRadians(degrees) {
   return degrees * (Math.PI / 180);
 }
-
